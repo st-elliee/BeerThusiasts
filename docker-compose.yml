@@ -1,0 +1,53 @@
+# Starts the whole stack with:  docker compose up --build
+#   Frontend -> http://localhost:3000
+#   Backend  -> http://localhost:5001
+#   MySQL    -> localhost:3307 (user: root, password: see DB_PASSWORD below)
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-beerthusiasts}
+    ports:
+      - "3307:3306"
+    volumes:
+      # Scripts in this folder run once, on the first start, in alphabetical order
+      - ./app/db-init:/docker-entrypoint-initdb.d:ro
+      - db-data:/var/lib/mysql
+    healthcheck:
+      # Healthy only once the seed data is loaded (the init step runs without TCP)
+      test: ["CMD-SHELL", "mysql -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD -e 'SELECT 1 FROM beerthusiasts.beer LIMIT 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  backend:
+    build: ./app/backend
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-beerthusiasts}
+      DB_NAME: beerthusiasts
+    ports:
+      - "5001:5001"
+    volumes:
+      - beer-images:/app/public/images
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./app/frontend
+      args:
+        # The browser calls the API directly, so this is the address as seen from your machine
+        REACT_APP_API_BASE: http://localhost:5001
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  db-data:
+  beer-images:
