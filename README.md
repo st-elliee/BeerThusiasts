@@ -141,7 +141,7 @@ beerthusiasts/
 ## Team
 
 - **Elisavet Stougiannou**
-- **Stergios Loukas** ([@sterlouk](https://github.com/sterlouk)): main developer of the web application (Deliverable 3)
+- **Stergios Loukas** ([@sterlouk](https://github.com/sterlouk))
 - **Aikaterini Mitropoulou**
 
 After the course, the repository was reorganised for publication. The changes were a Docker setup, database credentials moved into environment variables, table-name fixes so the SQL runs on Linux/macOS, and consolidated documentation.
