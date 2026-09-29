@@ -84,8 +84,8 @@ There is also a *Playroom* with a few beer-themed mini-games.
 You only need [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 ```bash
-git clone https://github.com/<your-username>/beerthusiasts.git
-cd beerthusiasts
+git clone https://github.com/st-elliee/BeerThusiasts.git
+cd BeerThusiasts
 docker compose up --build
 ```
 
