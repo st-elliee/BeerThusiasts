@@ -9,7 +9,7 @@ Team project for the *Databases* course, School of Electrical & Computer Enginee
 ![Tech](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![Tech](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 
-### 🔗 [Live demo](LIVE_DEMO_URL)
+   ### 🔗 [Live demo](https://beerthusiasts-demo.vercel.app)
 
 *Sample data only. The demo database is reset to its original state every day.*
 
