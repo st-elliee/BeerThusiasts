@@ -12,7 +12,7 @@ services:
       - "3307:3306"
     volumes:
       # Scripts in this folder run once, on the first start, in alphabetical order
-      - ./app/db-init:/docker-entrypoint-initdb.d:ro
+      - ./app/backend/db-init:/docker-entrypoint-initdb.d:ro
       - db-data:/var/lib/mysql
     healthcheck:
       # Healthy only once the seed data is loaded (the init step runs without TCP)

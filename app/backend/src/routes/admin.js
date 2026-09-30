@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 import { createBeer, updateBeer, upsertPubHasBeer, getAllInventory, updateInventory, getEnums, getEmployees, createEmployee, updateEmployee, deleteEmployee, uploadBeerImage, getSuppliersForBrand, placeSupplierOrder, getSupplierOrders, updateSupplierOrderStatus } from "../controllers/adminController.js";
 
 const router = express.Router();
@@ -18,9 +19,18 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+// In the live demo (DEMO_MODE=true) uploads are disabled: the hosting has no persistent disk,
+// and we don't want visitors uploading arbitrary files.
+const DEMO_MODE = process.env.DEMO_MODE === "true";
+if (!DEMO_MODE && !process.env.VERCEL) {
+	fs.mkdirSync(path.join(process.cwd(), 'public', 'images', 'beers'), { recursive: true });
+}
+const uploadsDisabled = (req, res) =>
+	res.status(403).type('text').send('Image uploads are disabled in the live demo.');
+
 router.post("/beers", createBeer);
 router.put("/beers/:id", updateBeer);
-router.post("/beers/:id/image", upload.single('image'), uploadBeerImage);
+router.post("/beers/:id/image", DEMO_MODE ? uploadsDisabled : upload.single('image'), uploadBeerImage);
 router.post("/pubhasbeer", upsertPubHasBeer);
 router.get("/inventory", getAllInventory);
 router.put("/inventory/:pub_id/:beer_id", updateInventory);

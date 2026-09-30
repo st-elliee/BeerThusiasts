@@ -9,6 +9,10 @@ Team project for the *Databases* course, School of Electrical & Computer Enginee
 ![Tech](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![Tech](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 
+### 🔗 [Live demo](LIVE_DEMO_URL)
+
+*Sample data only. The demo database is reset to its original state every day.*
+
 <p align="center">
   <img src="docs/screenshots/catalog.png" width="49%" alt="Beer catalog" />
   <img src="docs/screenshots/service-orders.png" width="49%" alt="Service orders management" />
@@ -76,6 +80,7 @@ The app lets you enter as one of three roles from the home page:
 There is also a *Playroom* with a few beer-themed mini-games.
 
 > Role selection is a simple front-end choice for demo purposes; there is no login or server-side authentication.
+> In the live demo, image uploads are disabled.
 
 ## Running it
 
@@ -118,6 +123,19 @@ mysql -u root -p < database/users.sql       # roles & privileges (demo passwords
 mysql -u root -p beerthusiasts < database/queries/query1.sql
 ```
 
+## Deployment
+
+The live demo runs on free tiers:
+
+| Part | Hosting |
+|------|---------|
+| Frontend | [Vercel](https://vercel.com) (project root: `app/frontend`) |
+| Backend | Vercel, Express as a serverless function (project root: `app/backend`) |
+| Database | [Aiven for MySQL](https://aiven.io/mysql) |
+
+A daily [Vercel Cron Job](app/backend/vercel.json) calls `/api/cron/reset-demo`, which rebuilds the database from `app/backend/db-init/`.
+The backend's environment variables are documented in [`app/backend/.env.example`](app/backend/.env.example).
+
 ## Project structure
 
 ```
@@ -132,8 +150,8 @@ beerthusiasts/
 │   ├── queries/              # Example queries
 │   └── beerthusiasts.mwb     # MySQL Workbench model
 ├── app/                      # Deliverable 3
-│   ├── db-init/              # Schema + seed data used by the app
 │   ├── backend/              # Express REST API (mysql2)
+│   │   └── db-init/          # Schema + seed data used by the app
 │   └── frontend/             # React single-page app
 └── docker-compose.yml
 ```
@@ -144,7 +162,7 @@ beerthusiasts/
 - **Stergios Loukas** ([@sterlouk](https://github.com/sterlouk))
 - **Aikaterini Mitropoulou**
 
-After the course, the repository was reorganised for publication. The changes were a Docker setup, database credentials moved into environment variables, table-name fixes so the SQL runs on Linux/macOS, and consolidated documentation.
+After the course, the repository was reorganised for publication. The changes were a Docker setup, a hosted live demo, database credentials moved into environment variables, table-name fixes so the SQL runs on Linux/macOS, and consolidated documentation.
 
 The web application was built with the help of AI coding assistants. Third-party code is credited in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
