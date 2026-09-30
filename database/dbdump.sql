@@ -567,7 +567,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `beerswithbrandinfo` AS select `b`.`beer_id` AS `beer_id`,`br`.`brand_id` AS `brand_id`,`br`.`name` AS `brand_name`,`br`.`country_of_origin` AS `country_of_origin` from (`beer` `b` join `brand` `br` on((`b`.`brand_id` = `br`.`brand_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -585,7 +585,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `beerwithbrand` AS select `b`.`beer_id` AS `beer_id`,`b`.`name` AS `beer_name`,`br`.`brand_id` AS `brand_id`,`br`.`name` AS `brand_name`,`br`.`country_of_origin` AS `country_of_origin` from (`beer` `b` join `brand` `br` on((`b`.`brand_id` = `br`.`brand_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -603,7 +603,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `customersafter2022` AS select `customer`.`customer_id` AS `customer_id`,`customer`.`registration_date` AS `registration_date` from `customer` where (year(`customer`.`registration_date`) > 2022) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -621,7 +621,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `employeeshighsalarygreece` AS select `e`.`employee_id` AS `employee_id`,`e`.`pub_id` AS `pub_id`,`e`.`salary` AS `salary` from (`employee` `e` join `pub` `p` on((`e`.`pub_id` = `p`.`pub_id`))) where ((`e`.`salary` > 1000) and (`p`.`country` = 'Greece')) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -639,7 +639,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `greekemployeeshighsalary` AS select `e`.`employee_id` AS `employee_id`,`e`.`first_name` AS `first_name`,`e`.`last_name` AS `last_name`,`e`.`salary` AS `salary`,`p`.`name` AS `pub_name` from (`employee` `e` join `pub` `p` on((`e`.`pub_id` = `p`.`pub_id`))) where ((`e`.`salary` > 1000) and (`p`.`country` = 'Greece')) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -657,7 +657,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `positivebeerreviews` AS select `crb`.`customer_id` AS `customer_id`,`crb`.`beer_id` AS `beer_id`,`crb`.`comment` AS `comment`,`crb`.`rating` AS `rating`,`b`.`name` AS `beer_name`,`br`.`name` AS `brand_name` from ((`customerreviewsbeer` `crb` join `beer` `b` on((`crb`.`beer_id` = `b`.`beer_id`))) join `brand` `br` on((`b`.`brand_id` = `br`.`brand_id`))) where (`crb`.`rating` > 3) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -675,7 +675,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `positivereviewswithbeerbrand` AS select `crb`.`beer_id` AS `beer_id`,`crb`.`customer_id` AS `customer_id`,`crb`.`rating` AS `rating`,`b`.`brand_id` AS `brand_id`,`b`.`description` AS `description` from (`customerreviewsbeer` `crb` join `beer` `b` on((`crb`.`beer_id` = `b`.`beer_id`))) where (`crb`.`rating` > 3) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -693,7 +693,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `pubsneedrestock` AS select `pubhasbeer`.`pub_id` AS `pub_id`,`pubhasbeer`.`beer_id` AS `beer_id`,`pubhasbeer`.`remaining_until_reorder` AS `remaining_until_reorder` from `pubhasbeer` where (`pubhasbeer`.`remaining_until_reorder` <= 0) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -711,7 +711,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `pubstorestock` AS select `pubhasbeer`.`pub_id` AS `pub_id`,`pubhasbeer`.`beer_id` AS `beer_id`,`pubhasbeer`.`quantity_available` AS `quantity_available`,`pubhasbeer`.`remaining_until_reorder` AS `remaining_until_reorder` from `pubhasbeer` where (`pubhasbeer`.`remaining_until_reorder` <= 0) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -729,7 +729,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY INVOKER */
 /*!50001 VIEW `recentcustomers` AS select `customer`.`customer_id` AS `customer_id`,`customer`.`first_name` AS `first_name`,`customer`.`last_name` AS `last_name`,`customer`.`registration_date` AS `registration_date` from `customer` where (`customer`.`registration_date` > '2022-01-01') */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
